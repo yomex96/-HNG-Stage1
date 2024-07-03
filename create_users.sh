@@ -47,7 +47,7 @@ fi
 # Create the log file if it doesn't exist
 if [ ! -f "$LOG_FILE" ]; then
     touch "$LOG_FILE"
-    chmod 0600 "$LOG_FILE"
+    chmod 666 "$LOG_FILE"
     log_message "Log file created: $LOG_FILE"
 fi
 
@@ -55,14 +55,13 @@ fi
 if [ ! -f "$PASSWORD_FILE" ]; then
     mkdir -p /var/secure
     touch "$PASSWORD_FILE"
-    chmod 0600 "$PASSWORD_FILE"
+    chmod 666 "$PASSWORD_FILE"
     log_message "Password file created: $PASSWORD_FILE"
 fi
 
 # Function to generate strong random passwords
 generate_password() {
-    local password_length=12
-    tr -dc 'A-Za-z0-9!@#$%^&*()_+~' </dev/urandom | head -c $password_length
+  < /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()_+=' | head -c 12
 }
 
 # Function to create user, group, set permissions, and log actions
@@ -102,7 +101,7 @@ create_user() {
   log_message "Generated password for $username"
 
   echo "$username,$password" >> "$PASSWORD_FILE"
-  chmod 600 "$PASSWORD_FILE" &>> "$LOG_FILE"
+  chmod 666 "$PASSWORD_FILE" &>> "$LOG_FILE"
 
   # Set user password
   echo "$username:$password" | chpasswd &>> "$LOG_FILE"
