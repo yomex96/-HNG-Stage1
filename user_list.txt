@@ -1,3 +1,0 @@
-alice;sudo,dev
-bob;dev,www-data
-charlie;sudo,admin
