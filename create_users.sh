@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Author : Efosa Oviawe
+# Author : Abayomi robert onawole
 # Description: This Bash script automates user creation, group management, and password generation for new employees based on a user list file
-# Date: 30/06/2024
+# Date: 03/07/2024
 
 #############################################################
 
